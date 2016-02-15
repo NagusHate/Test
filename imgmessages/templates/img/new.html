@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>New</title>
+	</head>
+	<body>
+		<h1>Add image</h1>
+
+		{% if error_message %}
+			<p><strong>{{ error_message }}</strong></p>
+		{% endif %}
+		<form action="{% url 'new'%}" 
+			  enctype="multipart/form-data" method="post">
+			{% csrf_token %}
+			{% for the_img in all_img %}
+		        <figure>
+					<figcaption>{{ the_img }}</figcaption>
+				</figure>
+		    {% endfor %}
+		    <p>{{ form }}</p>
+			<p><input type="submit" value="Отправить">
+			<input type="reset" value="Очистить"></p>
+		</form>
+	</body>
+</html>

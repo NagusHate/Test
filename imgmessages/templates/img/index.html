@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" 
+			  href="{{MEDIA_URL}}/plugins/colorbox/example5/colorbox.css">
+		<script src="{{MEDIA_URL}}/plugins/jquery.min.js"></script>
+		<script type="text/javascript" 
+		        src="{{MEDIA_URL}}/plugins/jquery.lazyload.mini.js"></script>
+		<script type="text/javascript" 
+				src="{{MEDIA_URL}}/plugins/colorbox/jquery.colorbox-min.js"></script>
+		<script>
+			$(document).ready(function () {
+			    $("img").lazyload({effect:"fadeIn"});
+			    $("a[rel='colorbox']").colorbox({current:"Фото {current} из {total}"});
+			});
+		</script>
+		<meta charset="utf-8" />
+		<title>Index</title>
+		<style>
+			figure {
+				background: #5f6a72;
+				padding: 10px;
+				display: block; 
+				width: 220px;
+				float: left; 
+				margin: 0 10px 10px 0;
+				text-align: center;
+			}
+			figcaption {
+				color: #fff; 
+			}
+		</style>
+	</head>
+	<body>
+		<p><a href="{{MEDIA_URL}}{% url 'new'%}">Добавить фото</a></p> 
+		{% if all_img %}
+		    {% for the_img in all_img %}
+		        <figure>
+					<p>
+					<a rel="colorbox" href="{{ MEDIA_URL }}{{ the_img.img}}" >
+     					<img src="{{ MEDIA_URL }}{{ the_img.img}}" width="200" 
+						    alt="asfdasdf" />
+					</a> 					
+					
+					</p>
+					<figcaption>{{ the_img.text }}</figcaption>
+				</figure>
+		    {% endfor %}
+		{% else %}
+		    <p>No img</p>
+		{% endif %}
+	</body>
+</html>
+
